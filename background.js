@@ -37,16 +37,27 @@ function getBackgroundUrl(tab, callback) {
 }
 
 function openImg(url, tab, newTab) { // "tab" contains the opener tab if "newTab" is set to true
-    if(!newTab) {
-        chrome.tabs.update(tab.id, {
-            url: url
-        });
-    } else {
-        chrome.tabs.create({
-            index: tab.index + 1, // Opens the new tab next the current one
-            openerTabId: tab.id,
-            url: url
-        });
+
+    if(url) { // There's a valid url
+        if(!newTab) {
+            chrome.tabs.update(tab.id, {
+                url: url
+            });
+        } else {
+            chrome.tabs.create({
+                index: tab.index + 1, // Opens the new tab next the current one
+                openerTabId: tab.id,
+                url: url
+            });
+        }
+    } else { // No url, we must alert the user
+        var notif = webkitNotifications.createNotification(
+          'icons/main48.png',
+          chrome.i18n.getMessage('noBackImg_title'),
+          chrome.i18n.getMessage('noBackImg_content')
+        );
+
+        notif.show();
     }
 }
 

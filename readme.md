@@ -14,11 +14,12 @@ This is a Chrome extension, it provides context menus to open images, whatever t
 The ones that will be added before the first stable release :
 
 * No need to restart Chrome after installation.
-* A message if there’s no background image where the user asked for one (this will be added before the first stable version).
 
 The ones for future releases :
 
 * The possibility to display background images stored in frames.
+* Context menus to only copy (not open) background images urls into clipboard. If possible, I will also try to add buttons to copy background images data.
+* Options to choose wich buttons the user wants to see.
 
 ## Credits
 

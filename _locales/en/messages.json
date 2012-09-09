@@ -18,6 +18,14 @@
 
     "dispBackImg_newTab": {
         "message": "Open background image in a new tab"
+    },
+
+    "noBackImg_title": {
+        "message": "No background image"
+    },
+
+    "noBackImg_content": {
+        "message": "It seems there is no background image here."
     }
 
 }

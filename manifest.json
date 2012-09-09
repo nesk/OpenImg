@@ -23,13 +23,18 @@
 
     "permissions": [
         "tabs",
-        "contextMenus"
+        "contextMenus",
+        "notifications"
     ],
 
     "icons": {
         "16": "icons/main16.png",
         "48": "icons/main48.png",
         "128": "icons/main128.png"
-    }
+    },
+
+    "web_accessible_resources": [
+        "icons/main48.png"
+    ]
 
 }
