@@ -26,7 +26,7 @@
         "contextMenus"
     ],
 
-    "icons": { // Main icon from the "Token" icon set, created by "brsev" (http://brsev.com/)
+    "icons": {
         "16": "icons/main16.png",
         "48": "icons/main48.png",
         "128": "icons/main128.png"
