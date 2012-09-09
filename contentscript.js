@@ -26,7 +26,13 @@
             style && (url = style.backgroundImage);
         } while((el = el.parentNode) && url == 'none');
 
-        return url.slice(4, -1); // "backgroundImage" property also provides the "url()" characters, we need to remove them
+        if(~url.indexOf('gradient(') || url == 'none') { // Avoids CSS3 gradients and none values
+            url = null; // Sets url to none, it will alert the user that there's no background image
+        } else {
+            url = url.slice(4, -1); // "backgroundImage" property also provides the "url()" characters, we need to remove them
+        }
+
+        return url;
     }
 
 
@@ -39,8 +45,7 @@
     }, false);
 
     port.onMessage.addListener(function() {
-        var url = getBackgroundUrl();
-        url != 'none' && port.postMessage(url); // Transmits the background URL to the background script, if there's one
+        port.postMessage(getBackgroundUrl()); // Transmits the background URL to the background script, even if there's no one
     });
 
 })();
