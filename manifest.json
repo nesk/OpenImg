@@ -1,0 +1,35 @@
+{
+
+    "name": "__MSG_extName__",
+    "description": "__MSG_extDesc__",
+
+    "version": "0.1.0",
+    "manifest_version": 2,
+    // "minimum_chrome_version": "20",
+
+    "default_locale": "en",
+    
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["http://*/*", "https://*/*"],
+            "js": ["contentscript.js"]/*,
+            "all_frames": true*/
+        }
+    ],
+
+    "permissions": [
+        "tabs",
+        "contextMenus"
+    ],
+
+    "icons": { // Main icon from the "Token" icon set, created by "brsev" (http://brsev.com/)
+        "16": "icons/main16.png",
+        "48": "icons/main48.png",
+        "128": "icons/main128.png"
+    }
+
+}

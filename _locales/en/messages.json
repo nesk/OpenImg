@@ -1,0 +1,23 @@
+{
+
+    "extName": {
+        "message": "OpenImg"
+    },
+
+    "extDesc": {
+        "message": "Provides context menus to open images, whatever they are background images or not."
+    },
+
+    "dispImg": {
+        "message": "Open image"
+    },
+
+    "dispBackImg": {
+        "message": "Open background image"
+    },
+
+    "dispBackImg_newTab": {
+        "message": "Open background image in a new tab"
+    }
+
+}
