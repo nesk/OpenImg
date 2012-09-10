@@ -58,6 +58,10 @@ function openImg(url, tab, newTab) { // "tab" contains the opener tab if "newTab
         );
 
         notif.show();
+
+        setTimeout(function() {
+            notif.cancel();
+        }, 5000);
     }
 }
 
