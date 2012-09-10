@@ -1,5 +1,9 @@
 {
 
+    /*
+     * Extension
+     */
+
     "extName": {
         "message": "OpenImg"
     },
@@ -7,6 +11,10 @@
     "extDesc": {
         "message": "Provides context menus to open images, whatever they are background images or not."
     },
+
+    /*
+     * Buttons
+     */
 
     "dispImg": {
         "message": "Open image"
@@ -20,12 +28,32 @@
         "message": "Open background image in a new tab"
     },
 
+    /*
+     * Notifications
+     */
+
     "noBackImg_title": {
         "message": "No background image"
     },
 
     "noBackImg_content": {
         "message": "It seems there is no background image here."
+    },
+
+    "loadingDOM_title": {
+        "message": "Webpage is loading..."
+    },
+
+    "loadingDOM_content": {
+        "message": "The webpage isn't completely loaded, you must wait until the end."
+    },
+
+    "error_title": {
+        "message": "Unexpected error"
+    },
+
+    "error_content": {
+        "message": "An unexpected error has been thrown, try again."
     }
 
 }

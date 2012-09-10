@@ -10,8 +10,12 @@ chrome.extension.onConnect.addListener(function(port) {
         callback: function() {}
     };
 
-    port.onMessage.addListener(function(url) {
-        (url != 'none') && portWrapper.callback(url);
+    port.onMessage.addListener(function(msg) {
+        if(msg == 'error') { // Error message
+            notify(chrome.i18n.getMessage('error_title'), chrome.i18n.getMessage('error_content'));
+        } else { // URL
+            portWrapper.callback(msg);
+        }
     });
 
     port.onDisconnect.addListener(function() {
@@ -35,6 +39,11 @@ function notify(title, content) {
 }
 
 function getBackgroundUrl(tab, callback) {
+    if(tab.status != 'complete') { // Status must be "complete" otherwise the content script could not be executed in time
+        notify(chrome.i18n.getMessage('loadingDOM_title'), chrome.i18n.getMessage('loadingDOM_content'));
+        return;
+    }
+
     for(var i = 0, wrapper ; wrapper = ports[i++] ;) {
         if(wrapper.port.sender.tab.id == tab.id) {
             wrapper.callback = callback;
@@ -58,18 +67,6 @@ function openImg(url, tab, newTab) { // "tab" contains the opener tab if "newTab
                 url: url
             });
         }
-    } else { // No url, we must alert the user
-        var notif = webkitNotifications.createNotification(
-          'icons/main48.png',
-          chrome.i18n.getMessage('noBackImg_title'),
-          chrome.i18n.getMessage('noBackImg_content')
-        );
-
-        notif.show();
-
-        setTimeout(function() {
-            notif.cancel();
-        }, 5000);
     } else { // Not a url, we must alert the user
         notify(chrome.i18n.getMessage('noBackImg_title'), chrome.i18n.getMessage('noBackImg_content'));
     }

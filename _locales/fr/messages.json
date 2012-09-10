@@ -1,8 +1,16 @@
 {
 
+    /*
+     * Extension
+     */
+
     "extDesc": {
         "message": "Fourni des menus contextuels pour ouvrir les images, que ce soit des images de fond ou non."
     },
+
+    /*
+     * Buttons
+     */
 
     "dispImg": {
         "message": "Ouvrir l'image"
@@ -16,12 +24,32 @@
         "message": "Ouvrir l'image de fond dans un nouvel onglet"
     },
 
+    /*
+     * Notifications
+     */
+
     "noBackImg_title": {
         "message": "Pas d'image de fond"
     },
 
     "noBackImg_content": {
         "message": "Il semblerait qu'il n'y ait pas d'image de fond ici."
+    },
+
+    "loadingDOM_title": {
+        "message": "Page web en cours de chargement..."
+    },
+
+    "loadingDOM_content": {
+        "message": "La page web n'est pas complètement chargée, vous devez attendre la fin."
+    },
+
+    "error_title": {
+        "message": "Erreur inattendue"
+    },
+
+    "error_content": {
+        "message": "Une erreur inattendue est survenue, veuillez réessayer."
     }
 
 }

@@ -21,6 +21,10 @@
             style,
             url = 'none';
 
+        if(!el) {
+            port.postMessage('error'); // Unexpected error, the user must be alerted
+        }
+
         do {
             style = getComputedStyle(el);
             style && (url = style.backgroundImage);
