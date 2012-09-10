@@ -26,6 +26,14 @@ chrome.extension.onConnect.addListener(function(port) {
  * Functions
  */
 
+function notify(title, content) {
+    var notif = webkitNotifications.createNotification('icons/main48.png', title, content).show();
+
+    setTimeout(function() {
+        notif.cancel();
+    }, 5000);
+}
+
 function getBackgroundUrl(tab, callback) {
     for(var i = 0, wrapper ; wrapper = ports[i++] ;) {
         if(wrapper.port.sender.tab.id == tab.id) {
@@ -62,6 +70,8 @@ function openImg(url, tab, newTab) { // "tab" contains the opener tab if "newTab
         setTimeout(function() {
             notif.cancel();
         }, 5000);
+    } else { // Not a url, we must alert the user
+        notify(chrome.i18n.getMessage('noBackImg_title'), chrome.i18n.getMessage('noBackImg_content'));
     }
 }
 
