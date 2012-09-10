@@ -2,103 +2,56 @@
  * Ports
  */
 
-var ports = [];
+ports = []
 
-chrome.extension.onConnect.addListener(function(port) {
-    var portWrapper = {
-        port: port,
-        callback: function() {}
-    };
+chrome.extension.on-connect.add-listener (port) ->
+    port-wrapper = {port, callback: ->}
 
-    port.onMessage.addListener(function(url) {
-        (url != 'none') && portWrapper.callback(url);
-    });
+    port.on-message.add-listener (url) ->
+        port-wrapper.callback url unless url is 'none'
 
-    port.onDisconnect.addListener(function() {
-        ports.splice(ports.indexOf(portWrapper), 1);
-    });
+    port.on-disconnect.add-listener ->
+        ports.splice (ports.index-of port-wrapper), 1
 
-    ports.push(portWrapper);
-});
+    ports.push port-wrapper
 
+chrome.context-menus.create do
+    title: get-message 'dispImg'
+    contexts: <[image]>
+    onclick: ({src-url}, tab) -> open-img src-url, tab
 
-/*
- * Functions
- */
+chrome.context-menus.create do
+    title: get-message 'dispBackImg'
+    contexts: <[all]>
+    onclick: (, tab) ->
+        get-background-url tab, (url) ->
+            open-img url, tab
 
-function getBackgroundUrl(tab, callback) {
-    for(var i = 0, wrapper ; wrapper = ports[i++] ;) {
-        if(wrapper.port.sender.tab.id == tab.id) {
-            wrapper.callback = callback;
-            wrapper.port.postMessage('getBackgroundUrl');
-            return;
-        }
-    }
-}
+chrome.context-menus.create
+    title: get-message 'dispBackImg_newTab'
+    contexts: <[all]>
+    onclick: (, tab) ->
+        get-background-url tab, (url) ->
+            open-img url, tab, true
 
-function openImg(url, tab, newTab) { // "tab" contains the opener tab if "newTab" is set to true
+!function getBackgroundUrl(tab, callback)
+    for wrapper in ports when wrapper.port.sender.tab.id is tab.id
 
-    if(url) { // There's a valid url
-        if(!newTab) {
-            chrome.tabs.update(tab.id, {
-                url: url
-            });
-        } else {
-            chrome.tabs.create({
-                index: tab.index + 1, // Opens the new tab next the current one
-                openerTabId: tab.id,
-                url: url
-            });
-        }
-    } else { // No url, we must alert the user
-        var notif = webkitNotifications.createNotification(
-          'icons/main48.png',
-          chrome.i18n.getMessage('noBackImg_title'),
-          chrome.i18n.getMessage('noBackImg_content')
-        );
+        wrapper.callback = callback
+        wrapper.port.post-message 'getBackgroundUrl'
 
-        notif.show();
-    }
-}
+        return
 
+!function openImg(url, {index, id}:tab, new-tab)
+    if url
+        if new-tab
+            chrome.tabs.create {index: index + 1, opener-tab-id: id, url}
+        else
+            chrome.tabs.update tab.id, {url}
+    else
+        notif = webkit-notifications.create-notification do
+            'icons/main48.png'
+            get-message 'noBackImg_title'
+            get-message 'noBackImg_content'
 
-/*
- * Context menus
- */
-
-chrome.contextMenus.create({
-
-    title: chrome.i18n.getMessage('dispImg'),
-    contexts: ['image'],
-
-    onclick: function(infos, tab) {
-        openImg(infos.srcUrl, tab);
-    }
-
-});
-
-chrome.contextMenus.create({
-
-    title: chrome.i18n.getMessage('dispBackImg'),
-    contexts: ['all'],
-
-    onclick: function(infos, tab) {
-        getBackgroundUrl(tab, function(url) {
-            openImg(url, tab);
-        });
-    }
-
-});
-
-chrome.contextMenus.create({
-
-    title: chrome.i18n.getMessage('dispBackImg_newTab'),
-    contexts: ['all'],
-
-    onclick: function(infos, tab) {
-        getBackgroundUrl(tab, function(url) {
-            openImg(url, tab, true);
-        });
-    }
-
-});
+function get-message then chrome.i18n.get-message it
