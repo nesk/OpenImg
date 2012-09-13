@@ -24,7 +24,8 @@
     "permissions": [
         "tabs",
         "contextMenus",
-        "notifications"
+        "notifications",
+        "http://*/*", "https://*/*" // For programmatic injections
     ],
 
     "icons": {

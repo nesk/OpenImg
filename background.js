@@ -72,6 +72,16 @@ function openImg(url, tab, newTab) { // "tab" contains the opener tab if "newTab
     }
 }
 
+function executeScript(filename, urls) { // Executes a script on the tabs matching the url patterns
+    chrome.tabs.query({ url: urls.pop() }, function(tabs) {
+        tabs.forEach(function(tab) {
+            chrome.tabs.executeScript(tab.id, { file: filename });
+        });
+    });
+
+    urls.length && executeScript(filename, urls);
+}
+
 
 /*
  * Context menus
@@ -113,3 +123,13 @@ chrome.contextMenus.create({
     }
 
 });
+
+
+/*
+ * Installation : executes the content script on the tabs already opened
+ */
+
+if(!localStorage['installDone']) { // If this variable isn't available, it's an installation
+    localStorage['installDone'] = true;
+    executeScript('contentscript.js', ['http://*/*', 'https://*/*']);
+}
