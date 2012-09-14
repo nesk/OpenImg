@@ -31,7 +31,15 @@ chrome.extension.onConnect.addListener(function(port) {
  */
 
 function i18n(msgId) { // Internationalization
-    return chrome.i18n.getmessage(msgId);
+    return chrome.i18n.getMessage(msgId);
+}
+
+function createContextMenu(msgId, context, onclick) {
+    chrome.contextMenus.create({
+        title: i18n(msgId),
+        contexts: [context],
+        onclick: onclick
+    });
 }
 
 function notify(title, content) {
@@ -91,41 +99,20 @@ function executeScript(filename, urls) { // Executes a script on the tabs matchi
  * Context menus
  */
 
-chrome.contextMenus.create({
-
-    title: i18n('dispImg'),
-    contexts: ['image'],
-
-    onclick: function(infos, tab) {
-        openImg(infos.srcUrl, tab);
-    }
-
+createContextMenu('dispImg', 'image', function(infos, tab) {
+    openImg(infos.srcUrl, tab);
 });
 
-chrome.contextMenus.create({
-
-    title: i18n('dispBackImg'),
-    contexts: ['all'],
-
-    onclick: function(infos, tab) {
-        getBackgroundUrl(tab, function(url) {
-            openImg(url, tab);
-        });
-    }
-
+createContextMenu('dispBackImg', 'all', function(infos, tab) {
+    getBackgroundUrl(tab, function(url) {
+        openImg(url, tab);
+    });
 });
 
-chrome.contextMenus.create({
-
-    title: i18n('dispBackImg_newTab'),
-    contexts: ['all'],
-
-    onclick: function(infos, tab) {
-        getBackgroundUrl(tab, function(url) {
-            openImg(url, tab, true);
-        });
-    }
-
+createContextMenu('dispBackImg_newTab', 'all', function(infos, tab) {
+    getBackgroundUrl(tab, function(url) {
+        openImg(url, tab, true);
+    });
 });
 
 
