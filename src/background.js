@@ -46,7 +46,7 @@ function notify(title, content) {
     var notif = webkitNotifications.createNotification('icons/main48.png', title, content).show();
 
     setTimeout(function() {
-        notif.cancel();
+        notif && notif.cancel();
     }, 5000);
 }
 
