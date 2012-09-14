@@ -131,5 +131,5 @@ chrome.contextMenus.create({
 
 if(!localStorage['installDone']) { // If this variable isn't available, it's an installation
     localStorage['installDone'] = true;
-    executeScript('contentscript.js', ['http://*/*', 'https://*/*']);
+    executeScript('src/contentscript.js', ['http://*/*', 'https://*/*']);
 }

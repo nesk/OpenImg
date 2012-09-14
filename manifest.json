@@ -9,13 +9,13 @@
     "default_locale": "en",
     
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["src/background.js"]
     },
 
     "content_scripts": [
         {
             "matches": ["http://*/*", "https://*/*"],
-            "js": ["contentscript.js"]
+            "js": ["src/contentscript.js"]
         }
     ],
 
