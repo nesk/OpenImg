@@ -5,7 +5,6 @@
 
     "version": "1.0.0",
     "manifest_version": 2,
-    // "minimum_chrome_version": "20",
 
     "default_locale": "en",
     
@@ -16,8 +15,7 @@
     "content_scripts": [
         {
             "matches": ["http://*/*", "https://*/*"],
-            "js": ["contentscript.js"]/*,
-            "all_frames": true*/
+            "js": ["contentscript.js"]
         }
     ],
 
@@ -25,7 +23,7 @@
         "tabs",
         "contextMenus",
         "notifications",
-        "http://*/*", "https://*/*" // For programmatic injections
+        "http://*/*", "https://*/*"
     ],
 
     "icons": {

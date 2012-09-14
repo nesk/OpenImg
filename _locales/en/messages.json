@@ -1,9 +1,5 @@
 {
 
-    /*
-     * Extension
-     */
-
     "extName": {
         "message": "OpenImg"
     },
@@ -11,10 +7,6 @@
     "extDesc": {
         "message": "Provides context menus to open images, whatever they are background images or not."
     },
-
-    /*
-     * Buttons
-     */
 
     "dispImg": {
         "message": "Open image"
@@ -27,10 +19,6 @@
     "dispBackImg_newTab": {
         "message": "Open background image in a new tab"
     },
-
-    /*
-     * Notifications
-     */
 
     "noBackImg_title": {
         "message": "No background image"

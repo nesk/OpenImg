@@ -1,16 +1,8 @@
 {
 
-    /*
-     * Extension
-     */
-
     "extDesc": {
         "message": "Fourni des menus contextuels pour ouvrir les images, que ce soit des images de fond ou non."
     },
-
-    /*
-     * Buttons
-     */
 
     "dispImg": {
         "message": "Ouvrir l'image"
@@ -23,10 +15,6 @@
     "dispBackImg_newTab": {
         "message": "Ouvrir l'image de fond dans un nouvel onglet"
     },
-
-    /*
-     * Notifications
-     */
 
     "noBackImg_title": {
         "message": "Pas d'image de fond"
