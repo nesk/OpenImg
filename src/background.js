@@ -12,7 +12,7 @@ chrome.extension.onConnect.addListener(function(port) {
 
     port.onMessage.addListener(function(msg) {
         if(msg == 'error') { // Error message
-            notify(chrome.i18n.getMessage('error_title'), chrome.i18n.getMessage('error_content'));
+            notify(i18n('error_title'), i18n('error_content'));
         } else { // URL
             portWrapper.callback(msg);
         }
@@ -30,6 +30,10 @@ chrome.extension.onConnect.addListener(function(port) {
  * Functions
  */
 
+function i18n(msgId) { // Internationalization
+    return chrome.i18n.getmessage(msgId);
+}
+
 function notify(title, content) {
     var notif = webkitNotifications.createNotification('icons/main48.png', title, content).show();
 
@@ -40,7 +44,7 @@ function notify(title, content) {
 
 function getBackgroundUrl(tab, callback) {
     if(tab.status != 'complete') { // Status must be "complete" otherwise the content script could not be executed in time
-        notify(chrome.i18n.getMessage('loadingDOM_title'), chrome.i18n.getMessage('loadingDOM_content'));
+        notify(i18n('loadingDOM_title'), i18n('loadingDOM_content'));
         return;
     }
 
@@ -68,7 +72,7 @@ function openImg(url, tab, newTab) { // "tab" contains the opener tab if "newTab
             });
         }
     } else { // Not a url, we must alert the user
-        notify(chrome.i18n.getMessage('noBackImg_title'), chrome.i18n.getMessage('noBackImg_content'));
+        notify(i18n('noBackImg_title'), i18n('noBackImg_content'));
     }
 }
 
@@ -89,7 +93,7 @@ function executeScript(filename, urls) { // Executes a script on the tabs matchi
 
 chrome.contextMenus.create({
 
-    title: chrome.i18n.getMessage('dispImg'),
+    title: i18n('dispImg'),
     contexts: ['image'],
 
     onclick: function(infos, tab) {
@@ -100,7 +104,7 @@ chrome.contextMenus.create({
 
 chrome.contextMenus.create({
 
-    title: chrome.i18n.getMessage('dispBackImg'),
+    title: i18n('dispBackImg'),
     contexts: ['all'],
 
     onclick: function(infos, tab) {
@@ -113,7 +117,7 @@ chrome.contextMenus.create({
 
 chrome.contextMenus.create({
 
-    title: chrome.i18n.getMessage('dispBackImg_newTab'),
+    title: i18n('dispBackImg_newTab'),
     contexts: ['all'],
 
     onclick: function(infos, tab) {
