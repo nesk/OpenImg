@@ -10,6 +10,10 @@ chrome.extension.onConnect.addListener(function(port) {
         callback: function() {}
     };
 
+    portWrapper.delete = function() {
+        ports.splice(ports.indexOf(portWrapper), 1);
+    };
+
     port.onMessage.addListener(function(msg) {
         if(msg == 'background-error') { // Error message
             notify(i18n('error_title'), i18n('error_content'));
@@ -18,9 +22,7 @@ chrome.extension.onConnect.addListener(function(port) {
         }
     });
 
-    port.onDisconnect.addListener(function() {
-        ports.splice(ports.indexOf(portWrapper), 1);
-    });
+    port.onDisconnect.addListener(portWrapper.delete);
 
     ports.push(portWrapper);
 });
