@@ -11,7 +11,7 @@ chrome.extension.onConnect.addListener(function(port) {
     };
 
     port.onMessage.addListener(function(msg) {
-        if(msg == 'error') { // Error message
+        if(msg == 'background-error') { // Error message
             notify(i18n('error_title'), i18n('error_content'));
         } else { // URL
             portWrapper.callback(msg);

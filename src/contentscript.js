@@ -19,7 +19,7 @@ function getBackgroundUrl() {
         url = 'none';
 
     if(!el) {
-        port.postMessage('error'); // Unexpected error, the user must be alerted
+        port.postMessage('background-error'); // Unexpected error, the user must be alerted
     }
 
     do {
