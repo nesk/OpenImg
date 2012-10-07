@@ -39,6 +39,7 @@ function i18n(msgId) { // Internationalization
 function createContextMenu(msgId, context, onclick) {
     chrome.contextMenus.create({
         title: i18n(msgId),
+        documentUrlPatterns: ['http://*/*', 'https://*/*'],
         contexts: [context],
         onclick: onclick
     });
