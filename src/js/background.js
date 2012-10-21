@@ -127,6 +127,10 @@ createContextMenu('dispImg', 'image', function(infos, tab) {
     openImg(infos.srcUrl, tab);
 });
 
+createContextMenu('dispImg_newTab', 'image', function(infos, tab) {
+    openImg(infos.srcUrl, tab, true);
+});
+
 createContextMenu('dispBackImg', 'all', function(infos, tab) {
     getBackgroundUrl(tab, function(url) {
         openImg(url, tab);

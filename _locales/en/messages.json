@@ -12,6 +12,10 @@
         "message": "Open image"
     },
 
+    "dispImg_newTab": {
+        "message": "Open image in a new tab"
+    },
+
     "dispBackImg": {
         "message": "Open background image"
     },

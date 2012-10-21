@@ -8,6 +8,10 @@
         "message": "Ouvrir l'image"
     },
 
+    "dispImg_newTab": {
+        "message": "Ouvrir l'image dans un nouvel onglet"
+    },
+
     "dispBackImg": {
         "message": "Ouvrir l'image de fond"
     },
