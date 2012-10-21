@@ -55,7 +55,7 @@ function createContextMenu(msgId, context, onclick) {
 }
 
 function notify(title, content) {
-    var notif = webkitNotifications.createNotification('icons/main48.png', title, content).show();
+    var notif = webkitNotifications.createNotification('resources/icons/main48.png', title, content).show();
 
     setTimeout(function() {
         notif && notif.cancel();
@@ -146,5 +146,5 @@ createContextMenu('dispBackImg_newTab', 'all', function(infos, tab) {
 
 if(!localStorage['installDone']) { // If this variable isn't available, it's an installation
     localStorage['installDone'] = true;
-    executeScript('src/contentscript.js', ['http://*/*', 'https://*/*']);
+    executeScript('src/js/contentscript.js', ['http://*/*', 'https://*/*']);
 }

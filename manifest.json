@@ -9,13 +9,13 @@
     "default_locale": "en",
     
     "background": {
-        "scripts": ["src/background.js"]
+        "scripts": ["src/js/background.js"]
     },
 
     "content_scripts": [
         {
             "matches": ["http://*/*", "https://*/*"],
-            "js": ["src/contentscript.js"]
+            "js": ["src/js/contentscript.js"]
         },
 
         {
@@ -33,13 +33,13 @@
     ],
 
     "icons": {
-        "16": "icons/main16.png",
-        "48": "icons/main48.png",
-        "128": "icons/main128.png"
+        "16": "resources/icons/main16.png",
+        "48": "resources/icons/main48.png",
+        "128": "resources/icons/main128.png"
     },
 
     "web_accessible_resources": [
-        "icons/main48.png", // Used for the notifications
+        "resources/icons/main48.png", // Used for the notifications
         "resources/patterns/black-linen-v2.png",
         "resources/patterns/noise.png"
     ]
