@@ -15,10 +15,19 @@ chrome.extension.onConnect.addListener(function(port) {
     };
 
     port.onMessage.addListener(function(msg) {
-        if(msg == 'background-error') { // Error message
-            notify(i18n('error_title'), i18n('error_content'));
-        } else { // URL
-            portWrapper.callback(msg);
+        switch(msg) {
+
+            case 'img-tab': // An image tab as been detected
+                prepareImgTab(port.sender.tab);
+            break;
+
+            case 'background-error': // Background error message
+                notify(i18n('error_title'), i18n('error_content'));
+            break;
+
+            default: // URL
+                portWrapper.callback(msg);
+
         }
     });
 
@@ -95,6 +104,18 @@ function executeScript(filename, urls) { // Executes a script on the tabs matchi
     });
 
     urls.length && executeScript(filename, urls);
+}
+
+function prepareImgTab(tab) {
+    chrome.tabs.executeScript(tab.id, {
+        runAt: 'document_start', // Runs the code as soon as possible
+        file: 'src/js/img-tab.js'
+    });
+
+    chrome.tabs.insertCSS(tab.id, {
+        runAt: 'document_start',
+        file: 'src/css/img-tab.css'
+    });
 }
 
 

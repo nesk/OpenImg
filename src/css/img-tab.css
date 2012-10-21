@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.drawer {
+    padding: 20px;
+    height: 100px;
+    color: #DDD;
+}
+
+.drawer p {
+    margin: 8px;
+}
+
+.drawer-revealed {
+    top: 100px !important;
+}
+
+.content {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-position: bottom;
+    box-shadow: 0 0 15px #000;
+    text-align: center;
+    overflow: auto;
+
+    -webkit-transition: top 250ms ease-out;
+    transition: top 250ms ease-out;
+}
+
+img {
+    -webkit-user-select: none;
+}
+
+.img { /* Class instead of tag because if you don't do this you need to set the "!important" tag for the zoom-in cursor */
+    cursor: -webkit-zoom-out;
+}
+
+.img-sized {
+    max-width: 90%;
+    max-height: 90%;
+    cursor: -webkit-zoom-in;
+}

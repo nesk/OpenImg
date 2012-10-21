@@ -16,6 +16,12 @@
         {
             "matches": ["http://*/*", "https://*/*"],
             "js": ["src/contentscript.js"]
+        },
+
+        {
+            "matches": ["http://*/*", "https://*/*"],
+            "js": ["src/js/tab-inspector.js"],
+            "run_at": "document_start"
         }
     ],
 
@@ -33,7 +39,9 @@
     },
 
     "web_accessible_resources": [
-        "icons/main48.png"
+        "icons/main48.png", // Used for the notifications
+        "resources/patterns/black-linen-v2.png",
+        "resources/patterns/noise.png"
     ]
 
 }
