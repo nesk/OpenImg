@@ -48,3 +48,7 @@ img {
     max-height: 90%;
     cursor: -webkit-zoom-in;
 }
+
+.img-default-cursor {
+    cursor: default;
+}

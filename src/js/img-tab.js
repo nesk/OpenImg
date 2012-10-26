@@ -16,7 +16,8 @@ var VImgPos = (function() {
 
     function VImgPos(img) {
         this.timerId = null;
-        this.img = img;
+        this.imgEL = img;
+        (this.imgObj = new Image()).src = img.src;
         this.parent = img.parentNode;
     }
 
@@ -25,13 +26,17 @@ var VImgPos = (function() {
     fn.calculatePos = function(offset) {
         offset = offset || 0;
 
-        return (this.parent.offsetHeight + offset > this.img.height)
-            ? (this.parent.offsetHeight + offset - this.img.height) / 2 +'px'
+        return (this.parent.offsetHeight + offset > this.imgEL.height)
+            ? (this.parent.offsetHeight + offset - this.imgEL.height) / 2 +'px'
             : 0;
     };
 
     fn.adjustImg = function() {
-        this.img.style.marginTop = this.calculatePos();
+        this.imgEL.style.marginTop = this.calculatePos();
+
+        (this.imgObj.width > this.parent.offsetWidth * 0.9 || this.imgObj.height > this.parent.offsetHeight * 0.9)
+            ? this.imgEL.classList.remove('img-default-cursor')
+            : this.imgEL.classList.add('img-default-cursor');
     };
 
     /*
@@ -61,7 +66,7 @@ var VImgPos = (function() {
 
 document.body.innerHTML = [
     '<div class="drawer"><p><strong id="filename"></strong></p><p id="file-sizes">[...] x [...]px</p></div>',
-    '<div class="content"><img class="img img-sized" src="'+ $('img').src +'"></div>'
+    '<div class="content"><img class="img img-sized img-default-cursor" src="'+ $('img').src +'"></div>'
 ].join('');
 
 
