@@ -101,7 +101,6 @@ imgEL.addEventListener('click', function() {
 }, false);
 
 imgObj.onload = function() {
-    imgPos.adjustImg();
     $('#file-sizes').innerHTML = this.width +' x '+ this.height +'px';
 };
 imgObj.src = imgEL.src;
