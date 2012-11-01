@@ -1,4 +1,11 @@
 /*
+ * Port : Used to ask to the background script if the user is displaying for the
+ *        first time the "image tab" page since the installation of the extension.
+ */
+
+var port = chrome.extension.connect().postMessage('first-img-tab');
+
+/*
  * Functions
  */
 

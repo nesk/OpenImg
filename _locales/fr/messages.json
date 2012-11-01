@@ -42,6 +42,14 @@
 
     "error_content": {
         "message": "Une erreur inattendue est survenue, veuillez réessayer."
+    },
+
+    "firstImgTab_title": {
+        "message": "Astuce"
+    },
+
+    "firstImgTab_content": {
+        "message": "Vous pouvez appuyer sur la touche espace pour afficher des informations à propos de l'image"
     }
 
 }

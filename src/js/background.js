@@ -21,6 +21,13 @@ chrome.extension.onConnect.addListener(function(port) {
                 prepareImgTab(port.sender.tab);
             break;
 
+            case 'first-img-tab': // Is it the first time the user displays the "image tab" since the installation of the extension ?
+                if(!localStorage['imgTabViewed']) {
+                    localStorage['imgTabViewed'] = true;
+                    notify(i18n('firstImgTab_title'), i18n('firstImgTab_content'), false);
+                }
+            break;
+
             case 'background-error': // Background error message
                 notify(i18n('error_title'), i18n('error_content'));
             break;

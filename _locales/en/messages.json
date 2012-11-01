@@ -46,6 +46,14 @@
 
     "error_content": {
         "message": "An unexpected error has been thrown, try again."
+    },
+
+    "firstImgTab_title": {
+        "message": "Tip"
+    },
+
+    "firstImgTab_content": {
+        "message": "You can press the space key to display details about the image"
     }
 
 }
