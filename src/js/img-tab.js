@@ -2,9 +2,7 @@
  * Functions
  */
 
-function $(query) {
-    return document.querySelector(query);
-}
+var $ = document.querySelector.bind(document);
 
 
 /*
