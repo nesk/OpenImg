@@ -54,12 +54,14 @@ function createContextMenu(msgId, context, onclick) {
     });
 }
 
-function notify(title, content) {
+function notify(title, content, timer) {
     var notif = webkitNotifications.createNotification('resources/icons/main48.png', title, content).show();
 
-    setTimeout(function() {
-        notif && notif.cancel();
-    }, 5000);
+    if(timer !== false) {
+        setTimeout(function() {
+            notif && notif.cancel();
+        }, timer || 5000);
+    }
 }
 
 function getBackgroundUrl(tab, callback) {
