@@ -64,7 +64,7 @@ var VImgPos = (function() {
 
 document.body.innerHTML = [
     '<div class="drawer"><p><strong id="filename"></strong></p><p id="file-sizes">[...] x [...]px</p></div>',
-    '<div class="content"><img class="img img-sized img-default-cursor" src="'+ $('img').src +'"></div>'
+    '<div class="content"><img class="img img-sized img-default-cursor" src="'+ location.href +'"></div>'
 ].join('');
 
 
